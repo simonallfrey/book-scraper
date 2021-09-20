@@ -13,11 +13,14 @@ const scraperObject = {
         await page1.goto('https://www.strava.com/login', {waitUntil: 'networkidle2'})
         // await page1.screenshot({path: '01_login_page_loaded.png'});
 
-        import {login,password} from './auth.js'
+        // node.js doens't support import (yet) so use require
+        // import { login,password } from './auth.js'
+        const {login,password} = require('./auth.js')
+
         // ./auth.js contains:
         // const login = 'YOURSTRAVAUSERNAME'
         // const password = 'YOURSTRAVAPASSWORD'
-        // export {login,password}
+        // module.exports = {login,password}
 
         await page1.waitForSelector('form')
         await page1.type('input#email', login)
